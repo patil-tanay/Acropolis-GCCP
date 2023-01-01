@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Acropolis GCCP</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="notice">Notice</string>
+    <string name="account">Account</string>
+    <string name="AITR">Acropolis Institute of Technology and Research</string>
+    <string name="notice_sample">This is important notice from RGPV. This is important notice from RGPV. This is important notice from RGPV.</string>
+</resources>
