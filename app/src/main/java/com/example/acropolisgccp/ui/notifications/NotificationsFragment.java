@@ -8,10 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import com.bumptech.glide.Glide;
 import com.example.acropolisgccp.SplashScreen;
 import com.example.acropolisgccp.databinding.FragmentNotificationsBinding;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
+//import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -25,17 +24,17 @@ public class NotificationsFragment extends Fragment {
     private FragmentNotificationsBinding binding;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    String user = "0827AL211056";
+    String user = "0827IT211020";
     GoogleSignInAccount account;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        account = GoogleSignIn.getLastSignedInAccount(getContext());
-        binding.txtStudentName.setText(account.getDisplayName());
-        binding.txtEmail.setText(account.getEmail());
-        Glide.with(getContext()).load(account.getPhotoUrl()).into(binding.imgStudent);
+//        account = GoogleSignIn.getLastSignedInAccount(getContext());
+//        binding.txtStudentName.setText(account.getDisplayName());
+//        binding.txtEmail.setText(account.getEmail());
+//        Glide.with(getContext()).load(account.getPhotoUrl()).into(binding.imgStudent);
 
 
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -48,7 +47,6 @@ public class NotificationsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
-//                startActivity(new Intent(getContext() , SignInActivity.class));
                 Intent intent = new Intent(getContext(), SplashScreen.class);
                 startActivity(intent);
                 getActivity().finish();
@@ -66,13 +64,13 @@ public class NotificationsFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 String studentName = snapshot.child(user).child("studentName").getValue(String.class);
-//                String studentEmail = snapshot.child(user).child("studentEmail").getValue(String.class);
+                String studentEmail = snapshot.child(user).child("studentEmail").getValue(String.class);
                 String studentEnrollNo = snapshot.child(user).child("studentEnroll").getValue(String.class);
                 String studentDepartment = snapshot.child(user).child("department").getValue(String.class);
 
                 binding.txtStudentName.setText(studentName);
                 binding.txtEnrollNo.setText(studentEnrollNo);
-//                binding.txtEmail.setText(studentEmail);
+                binding.txtEmail.setText(studentEmail);
                 binding.txtDepartment.setText(studentDepartment);
 
             }
